@@ -1,0 +1,14 @@
+<mvc:View controllerName="filmcatalogue.controller.ListadoPeliculas" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%">
+    <List id="FilmListCatalogue" headerText="Peliculas" items="{path: '/peliculaSet'}">
+        <items>
+            <StandardListItem
+                title="{titulo}"
+                description="{autor}"
+                icon="{caratula}"
+                iconDensityAware="false"
+                iconInset="false" 
+                press=".onPress"
+                type="Navigation"/>
+        </items>
+    </List>
+</mvc:View>
