@@ -1,14 +1,16 @@
 <mvc:View controllerName="filmcatalogue.controller.ListadoPeliculas" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%">
-    <List id="FilmListCatalogue" headerText="Peliculas" items="{path: '/peliculaSet'}">
-        <items>
-            <StandardListItem
-                title="{titulo}"
-                description="{autor}"
-                icon="{caratula}"
-                iconDensityAware="false"
-                iconInset="false" 
-                press=".onPress"
-                type="Navigation"/>
-        </items>
-    </List>
+    <Page id="_IDGenPage">
+        <List id="FilmListCatalogue" headerText="Peliculas" items="{path: 'moviesModel>/results'}">
+            <items>
+                <StandardListItem id="_IDGenStandardListItem"
+                    title="{moviesModel>title}"
+                    description="{moviesModel>release_date}"
+                    icon="{moviesModel>poster_full_path}"
+                    iconDensityAware="false"
+                    iconInset="false" 
+                    press=".onPress"
+                    type="Navigation"/>
+            </items>
+        </List>
+    </Page>
 </mvc:View>
