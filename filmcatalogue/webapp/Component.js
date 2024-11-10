@@ -44,14 +44,25 @@ sap.ui.define([
                     let API_Key = data[0].API_Key;
 
                     // Ahora puedes usar la variable API_Key en tu código
-                    console.log("La clave de la API es:", API_Key);
+                    // console.log("La clave de la API es:", API_Key);
 
                     // Crea el modelo JSON que almacenará los datos obtenidos de la API de TMDb
                     const moviesModel = new JSONModel();
 
                     // Realiza la solicitud de datos a la API de TMDb para obtener la lista de películas populares
+                    var dataAPI = "https://api.themoviedb.org/3/movie/popular?api_key="+API_Key+"&page=1";
+
                     // La URL incluye la API key y especifica la primera página de resultados
-                    moviesModel.loadData("https://api.themoviedb.org/3/movie/popular?api_key="+API_Key+"&page=1");
+                    moviesModel.loadData(dataAPI);
+
+                    // Crea el modelo JSON que almacenará los datos locales
+                    const moviesLocalModel = new JSONModel();
+
+                    // Realiza la solicitud de datos al modelo local para obtener la lista de películas
+                    var dataLocal = "/localService/data/peliculaSet.json";
+
+                    // Si no existe key de la API, cargamos datos del modelo local
+                    moviesLocalModel.loadData(dataLocal);
 
                     // Este evento se ejecuta cuando la solicitud a la API se completa
                     moviesModel.attachRequestCompleted(function(oEvent) {
@@ -81,6 +92,10 @@ sap.ui.define([
                     // Establece `moviesModel` como el modelo nombrado "moviesModel" en la vista, 
                     // para que se pueda acceder a él desde el resto de la aplicación
                     this.setModel(moviesModel, "moviesModel");
+
+                    // Establece `moviesLocalModel` como el modelo nombrado "moviesLocalModel" en la vista, 
+                    // para que se pueda acceder a él desde el resto de la aplicación
+                    this.setModel(moviesLocalModel, "moviesLocalModel");
                 }.bind(this));
 
             }

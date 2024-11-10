@@ -1,5 +1,6 @@
-<mvc:View controllerName="filmcatalogue.controller.ListadoPeliculas" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%">
+<mvc:View xmlns:core="sap.ui.core" controllerName="filmcatalogue.controller.ListadoPeliculas" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%">
     <Page id="_IDGenPage">
+        <!--
         <List id="FilmListCatalogue" headerText="Peliculas" items="{path: 'moviesModel>/results'}">
             <items>
                 <StandardListItem id="_IDGenStandardListItem"
@@ -12,5 +13,41 @@
                     type="Navigation"/>
             </items>
         </List>
+        -->
+        
+        <Table id="peliculasTable" items="{path: 'moviesModel>/results'}">
+            <headerToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar">
+                    <content>
+                        <Title id="_IDGenTitle1" text="Buscar pelicula"/>
+                        <SearchField id="_IDGenSearchField" width="25%" placeholder="Buscar pelicula..." search="onSearch" />
+                    </content>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="titleCol" width="12em">
+                    <Text id="_IDGenText2" text="Lista Peliculas"/>
+                </Column>
+		    </columns>
+            <items>
+                <ColumnListItem id="_IDGenColumnListItem" type="Active" vAlign="Middle" navigated="true" press="onPress">
+                    <cells>
+                        <HBox id="_IDGenHBox" class="sapUiSmallMargin">
+                            <Image id="posterIcon" src="{moviesModel>poster_full_path}" decorative="false" height="10em" width="10em" densityAware="false">
+                                <detailBox>
+                                    <LightBox id="_IDGenLightBox">
+                                        <LightBoxItem id="_IDGenLightBoxItem" imageSrc="{moviesModel>poster_full_path}" title="{moviesModel>title}" subtitle="{moviesModel>release_date}" />
+                                    </LightBox>
+                                </detailBox>
+                            </Image>
+                            <VBox id="_IDGenVBox" class="sapUiSmallMarginBegin">
+                                <Title id="_IDGenTitle" text="{moviesModel>title}"/>
+                                <Text id="_IDGenText" text="{moviesModel>overview}"/>
+                            </VBox>
+                        </HBox>
+                    </cells>
+			    </ColumnListItem>
+            </items>
+        </Table>
     </Page>
 </mvc:View>

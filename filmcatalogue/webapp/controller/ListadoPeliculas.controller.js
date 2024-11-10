@@ -13,15 +13,10 @@ sap.ui.define([
                 
             },
 
-            onPress: function () {
+            onPress: function (oEvent) {
                 alert("Presionado!");
             }
-            
-            /**
-             ** 
-             **   Métodos privados
-             **
-             **/
+
 
         });
     });
